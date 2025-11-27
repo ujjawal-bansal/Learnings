@@ -1,0 +1,20 @@
+/* Center the content using flexbox */
+body {
+    display: flex;
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    height: 100vh; /* Full screen height */
+    margin: 0; /* Remove default margin */
+    background-color: lightgray; /* Background color for visibility */
+}
+
+/* Style for the rectangle */
+.rectangle {
+    width: 100px; /* Rectangle width */
+    height: 150px; /* Rectangle height (vertical rectangle) */
+    background-color: lightblue; /* Rectangle color */
+    position: absolute; /* Allow precise positioning */
+    top: 50%; /* Start vertically centered */
+    left: 50%; /* Start horizontally centered */
+    transform: translate(-50%, -50%); /* Adjust to make the rectangle centered */
+}

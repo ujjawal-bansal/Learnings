@@ -1,0 +1,13 @@
+# dependencies
+node_modules
+
+# build output
+dist
+.parcel-cache
+
+# system files
+.DS_Store
+
+# environment variables
+.env
+

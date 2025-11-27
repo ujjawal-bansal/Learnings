@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chai aur code | DOM</title>
+</head>
+<body style="background-color: #212121; color: #fff;">
+    <ul class="language">
+        <li>Javascript</li>
+    </ul>
+</body>
+<script>
+
+// 1. addLanguage() uses innerHTML:
+function addLanguage(langName){
+        const li = document.createElement('li');
+        li.innerHTML = `${langName}`
+        document.querySelector('.language').appendChild(li)
+    }
+    addLanguage("python")
+    addLanguage("typescript")
+// - PRO: Quick to write for simple cases
+// - CON: Potential security risk if langName contains user-generated content
+// - CON: Slightly heavier as it triggers HTML parsing
+
+// 2. addOptiLanguage() uses createTextNode():
+function addOptiLanguage(langName){
+        const li = document.createElement('li');
+        li.appendChild(document.createTextNode(langName))
+        document.querySelector('.language').appendChild(li)
+    }
+    addOptiLanguage('golang')
+// - PRO: More secure (no HTML parsing)
+// - PRO: Better performance for plain text
+// - PRO: Recommended for user-generated content
+// - CON: Slightly more verbose
+
+/* ===== WHEN TO USE WHICH ===== */
+// - Use innerHTML when you NEED to insert actual HTML tags
+// - Use createTextNode() when inserting PLAIN TEXT (safer/faster)
+// - Always use createTextNode() for user-provided content to prevent XSS attacks
+
+/* ===== PERFORMANCE NOTE ===== */
+// For simple cases like this, the difference is negligible,
+// but createTextNode() becomes significantly better at large scale projects.
+// Optamized approach
+
+    //Editing
+    const secondLang = document.querySelector("li:nth-child(2)") // get the second li 
+                                                                // output: <li>python</li>`
+    console.log(secondLang);
+    //secondLang.innerHTML = "Mojo"
+    const newli = document.createElement('li')
+    newli.textContent = "Mojo" // this is in the air 
+    secondLang.replaceWith(newli) // attaching it and replacing the old one (python)
+
+    //edit
+    const firstLang = document.querySelector("li:first-child")
+    firstLang.outerHTML = '<li>TypeScript</li>' // we have to give the whole li tag to 
+                                               // change the whole outer HTML
+
+    //removing
+    const lastLang = document.querySelector('li:last-child')
+    lastLang.remove() // removes the last li (golang)
+
+
+</script>
+</html>

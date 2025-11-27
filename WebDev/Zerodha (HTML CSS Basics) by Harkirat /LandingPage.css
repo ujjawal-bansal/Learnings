@@ -1,0 +1,46 @@
+.logo {
+    width: 150px;
+    height: 30;
+    margin-left: 100px;
+}
+.parentdiv {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    margin-right: 100px;
+    
+}
+.grandfather{
+    border-bottom: black;
+    box-shadow: 2px 1px 2px #eee;
+    background-color: white;
+}
+.options {
+    display: flex;
+    gap: 10px;
+    color: gray;
+    cursor: pointer;
+}
+.imgcontainer{
+
+    display:flex;
+    justify-content: center;    
+}
+.landingpng{
+    width: 80%;
+}
+.texts{
+    text-align: center;
+}
+.txt1{
+    font-weight: 400;
+}
+button {
+    background-color: #387ed1;
+    border: none;
+    color: #eee;
+    padding: 10px 30px 10px 30px;
+    font-size: 20px;
+    cursor: pointer;
+    border-radius: 3px;
+}

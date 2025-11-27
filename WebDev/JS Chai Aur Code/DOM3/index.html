@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chai aur code </title>
+</head>
+<body style="background-color: #212121; color: #fff;">
+    
+</body>
+<script>
+    const div = document.createElement('div')
+    console.log(div);
+    div.className = "main"
+    div.id = Math.round(Math.random() * 10 + 1)
+    div.setAttribute("title", "generated title")
+    /* The setAttribute function is a method available on DOM elements in JavaScript 
+       that allows you to add or modify attributes on HTML elements.
+       Basic Syntax: element.setAttribute(key, value);
+       key: The name of the attribute you want to set (string)
+       value: The value you want to assign to the attribute (string) */
+    div.style.backgroundColor = "green"
+    div.style.padding = "12px"
+    /* Nothing showed up because the div that we have created is in the memory
+    and not in the DOM(page). We need to add it to the DOM.
+    We have to attach it on the page. 
+    We can do this by using the innerText method and appendChild method of the body element. */
+    // div.innerText = "Chai aur code" // NOTE: .innerText() overwrites the existing content.
+                                      //        it selects and takes the existing values &
+                                     //         then sets its new value 
+                                    //          But setAttribute() does not do this & directly
+                                   //           adds the new value to the existing value.
+    // That's why it is perferable by few:                               
+    const addText = document.createTextNode("Chai aur code")
+    div.appendChild(addText)
+
+    document.body.appendChild(div)
+</script>
+</html>

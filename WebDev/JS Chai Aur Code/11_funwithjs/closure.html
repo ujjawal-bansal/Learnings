@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Closure aur chai</title>
+</head>
+<body style="background-color: #313131;">
+    <button id="orange">Orange</button>
+    <button id="green">Green</button>
+</body>
+
+    <script>
+    // function init() {
+    //     let name = "Mozilla"; 
+    //     function displayName() {
+    //         console.log(name); 
+    //     }
+    //     displayName();
+    // }
+    // init();
+
+    // function outer(){
+    //     let username = "hitesh"
+    //     console.log("OUTER", secret);
+    //     function inner(){
+    //         let secret = "my123"
+    //         console.log("inner", username);
+    //     }
+    //     function innerTwo(){
+    //         console.log("innerTwo", username);
+    //         console.log(secret);
+    //     }
+    //     inner()
+    //     innerTwo()
+
+    // }
+    // outer()
+    // console.log("TOO OUTER", username);
+
+
+// NOTE: 📘 Lexical Scope (aka Static Scope)
+// - Scope is determined by where variables and functions are written in the code.
+// - Inner functions have access to variables from their outer (parent) function.
+// - JavaScript uses lexical scope, NOT dynamic scope.
+// ✅ A function defined inside another function "remembers" its outer variables.
+// ✅ This is the foundation of closures in JavaScript.
+// 🔁 Even if the outer function finishes executing, the inner function still has access to its variables.
+// ❗ Key Rule: "Where you write it" matters more than "where you call it"
+// 💡 Think of lexical scope as code hierarchy — inner blocks can look up, but not sideways or down.
+
+
+    // function makeFunc() {
+    //     const name = "Mozilla";
+    //     function displayName() {
+    //         console.log(name);
+    //     }
+    //     return displayName; // here the whole memory is shared not just the executional context of the function. the whole lexical scope will be
+    // }
+
+    // const myFunc = makeFunc();
+    // myFunc(); // returns Mozilla
+
+    // NOTE: closure means when you return a function itself then not only the function is returned but its whole lexical scope is returned
+
+    </script>
+    <script>
+        // document.getElementById("orange").onclick = function(){
+        //     document.body.style.backgroundColor = `orange`
+        // }
+        // document.getElementById("green").onclick = function(){
+        //     document.body.style.backgroundColor = `green`
+        // }
+
+        function clickHandler(color){
+            // document.body.style.backgroundColor = `${color}`
+
+            return function(){
+                document.body.style.backgroundColor = `${color}`
+            }
+        }
+
+        document.getElementById('orange').onclick = clickHandler("orange")
+        document.getElementById('green').onclick = clickHandler("green")
+        // 
+
+    </script>
+</html>

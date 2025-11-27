@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body style="background-color: #212121;">
+</body>
+<script>
+  const btn = document.createElement("button")
+  btn.innerText = "Get Info";
+  btn.style.padding = "10px 20px";
+  btn.style.margin = "20px";
+  btn.style.cursor = "pointer";
+  document.body.appendChild(btn)
+  
+  const box = document.createElement("div");
+  box.style.width = "300px";
+  box.style.height = "200px";
+  box.style.backgroundColor = "#cccccc";
+  box.innerText = "Hello, I'm a box!";
+  box.style.padding = "20px";
+  box.style.margin = "20px";
+  box.style.fontFamily = "Arial";
+
+  /******** OR
+  const boxObj = {
+    width: "300px",
+    height: "200px",
+    backgroundColor: "#ccc",
+    create: function() {
+      const box = document.createElement("div");
+      box.style.width = this.width;
+      box.style.height = this.height;
+      box.style.backgroundColor = this.backgroundColor;
+      box.innerText = "Basic Box";
+      document.body.appendChild(box);
+    }
+  };
+
+  boxObj.create(); */
+    const requestUrl = 'https://api.github.com/users/hiteshchoudhary'
+    const xhr = new XMLHttpRequest();
+    xhr.open('GET', requestUrl)
+    xhr.onreadystatechange = function(){
+        console.log(xhr.readyState);
+        if (xhr.readyState === 4) {
+            const data = JSON.parse(this.responseText)
+            btn.addEventListener("click", function(){
+              // document.body.removeChild(btn) OR
+              btn.remove()
+      document.body.appendChild(box);
+      box.innerHTML = `
+          <img src="${data.avatar_url}" width="100" style="border-radius: 10px;"><br><br>
+          <strong>Name:</strong> ${data.name || "No name"}<br>
+          <strong>Followers:</strong> ${data.followers}
+        `;
+    })    
+    }
+        }
+    xhr.send();
+</script>
+</html>

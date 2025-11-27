@@ -1,0 +1,17 @@
+/* Center the content using flexbox */
+body {
+    display: flex;
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    height: 100vh; /* Take up full screen height */
+    margin: 0; /* Remove default margin */
+    background-color: lightgray; /* Optional: set a background color for better visibility */
+}
+
+/* Style for the rectangle */
+.rectangle {
+    width: 350px; /* Set the width of the rectangle */
+    height: 150px; /* Set the height of the rectangle */
+    background-color: white; /* Set the initial background color to white */
+    border: 2px solid black; /* Add a black border around the rectangle */
+}

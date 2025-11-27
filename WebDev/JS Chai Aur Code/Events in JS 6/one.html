@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>html Events </title>
+</head>
+<body style="background-color: #414141; color: aliceblue;">
+    <h2>Amazing image</h2>
+    <div >
+        <ul id="images">
+            <li><img width="200px" id="photoshop" src="https://images.pexels.com/photos/3561339/pexels-photo-3561339.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load" alt="photoshop"></li>
+            <li><img width="200px" id="japan" src="https://images.pexels.com/photos/3532553/pexels-photo-3532553.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load" alt=""></li>
+            <li><img width="200px" id="river" src="https://images.pexels.com/photos/3532551/pexels-photo-3532551.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load" alt=""></li>
+            <li><img width="200px" id="owl" src="https://images.pexels.com/photos/3532552/pexels-photo-3532552.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load" alt="" ></li>
+            <li><img width="200px" id="prayer" src="https://images.pexels.com/photos/2522671/pexels-photo-2522671.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load" alt=""></li>
+            <li><a style="color: aliceblue;" href="https://google.com" id="google">Google</a></li>
+        </ul>
+   </div>
+</body>
+<script>
+    // document.getElementById('owl').onclick = function(){
+    //     alert("owl clicked")
+    // }
+    //This is bad practice
+
+     // attachEvent()
+    // jQuery - on
+
+    // type, timestamp, defaultPrevented
+    // target, toElement, srcElement, currentTarget,
+    // clientX, clientY, screenX, screenY
+    // altkey, ctrlkey, shiftkey, keyCode
+
+
+    //This is good practice
+    // document.getElementById('images').addEventListener('click', function(e){
+    //     console.log("clicked inside the ul");
+    // }, false)
+
+    // document.getElementById('owl').addEventListener('click', function(e){
+    //     console.log("owl clicked");
+    //     e.stopPropagation() /* stop the event from bubbling up i.e. doesn't call the parent event listener i.e. doesn't print 'clicked inside the ul' 
+    // }, false)
+    
+    // document.getElementById('google').addEventListener('click',function(e){
+    //     e.preventDefault(); // preventDefault() prevents the default action of the event i.e. doesn't open the link in the browser
+    //     e.stopPropagation()
+    //     console.log("google clicked");
+    // }, false)
+
+                       // ===== EVENT PROPAGATION: CAPTURING vs BUBBLING ===== //
+
+// CAPTURING PHASE (Trickle Down):
+// - Event travels from window DOWN TO the target element
+// - Also called "Trickling" phase
+// - Less commonly used
+// - Add event listener with {capture: true} or third parameter true
+
+// BUBBLING PHASE (Bubble Up):
+// - Event travels from target element UP TO window
+// - DEFAULT behavior for most events
+// - Add event listener normally (capture:false or omit third parameter)
+
+// KEY DIFFERENCES:
+// 1. Direction:
+//    - Capturing: Top → Target (window → element)
+//    - Bubbling: Target → Top (element → window)
+
+// 2. Order of Execution:
+//    - Capturing phase happens FIRST (if listeners exist)
+//    - Then Target phase
+//    - Then Bubbling phase (default)
+
+// 3. Practical Usage:
+//    - Capturing: Rare, used when you need early interception
+//    - Bubbling: Common, enables event delegation pattern
+
+// 4. Default Behavior:
+//    - Most events bubble by default
+//    - Some events don't bubble (focus, blur, etc.)
+
+// Note: Use event.stopPropagation() to stop the event flow
+   
+    // Now I want to delete the image when it is clicked
+    document.querySelector('#images').addEventListener('click', function(e) {
+    //     console.log(e.target.parentNode); // NOTE: Logs the parent DOM element of the clicked element.
+    //     let removeIt= e.target.parentNode;
+    //     removeIt.remove();
+    //     }, false)
+    /* NOTE: This method will work fine until you will click on image but not on list item.. 
+       i.e. anywhere outside the image then the parent of list item will be ul and it will delete the whole ul. 
+       In parent node you get ul and then you removed it so the whole ul is removed. */
+
+    // Correct method is:
+        
+           console.log(e.target.tagName); // this will print the tag name of the element that was clicked.. when clicked image it will give IMG and 
+                                         // when clicked on list item it will give LI.
+           if (e.target.tagName === 'IMG') {
+            let removeIt = e.target.parentNode;
+            removeIt.remove();
+    }
+});
+    //removeIt.parentNode.removeChild(removeIt)
+</script>
+</html>
