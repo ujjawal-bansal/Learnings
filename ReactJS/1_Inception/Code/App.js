@@ -87,6 +87,24 @@ const container = React.createElement(
 
 console.log(heading);
 
+
+// JSX uses React.createElement method behind the scenes => Object => HTML(DOM) 
+// babel is a javascript compiler which converts JSX to React.createElement method calls
+// babel is used to convert modern javascript code to older javascript code which can run in older browsers
+// babel is also used to convert JSX to React.createElement method calls
+const heading3= (
+<h1 id="title" key="h2" >
+Namaste React
+</h1>
+);
+
+// this or JSX is not html
+// JSX is a html like syntax but it is not html inside javascript
+
+
+
+
+
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
 //passing a react element inside the root
