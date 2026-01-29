@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Basketball Score Tracker</title>
+    <link rel="stylesheet" href="bsscoretracker.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Basketball Score Tracker</h1>
+        <div class="scoreboard">
+            <div class="team">
+                <h2>Team A</h2>
+                <p id="teamAScore" class="score">0</p>
+                <button onclick="updateScore('A', 1)">+1 Point</button>
+                <button onclick="updateScore('A', 2)">+2 Points</button>
+                <button onclick="updateScore('A', 3)">+3 Points</button>
+            </div>
+            <div class="team">
+                <h2>Team C</h2>
+                <p id="teamBScore" class="score">0</p>
+                <button onclick="updateScore('B', 1)">+1 Point</button>
+                <button onclick="updateScore('B', 2)">+2 Points</button>
+                <button onclick="updateScore('B', 3)">+3 Points</button>
+            </div>
+        </div>
+        <button class="reset" onclick="resetScores()">Reset Scores</button>
+    </div>
+    <script src="bsscoretracker.js"></script>
+</body>
+</html>
