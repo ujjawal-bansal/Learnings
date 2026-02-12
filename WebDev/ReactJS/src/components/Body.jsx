@@ -2,6 +2,7 @@ import { restaurantList } from "../contants";
 import RestaurantCard from "./RestaurantCards";
 import { useState, useEffect } from "react";
 import Shimmer from "./Shimmer";
+import { Link } from "react-router-dom";
 
 function filterData(searchText, restaurants) {
   // 8 restraunt list = > filtered  rest with "King"
@@ -84,10 +85,12 @@ const Body = () => {
         </button>
       </div>
       <div className="restaurant-list">
-        {/* You have to write logic for NO restraunt fount here */}
+        {/* You have to write logic for NO restraunt found here */}
         {filteredRestaurants.map((restaurant) => {
           return (
-            <RestaurantCard {...restaurant.info} key={restaurant.info.id} />
+            <Link to={"/restaurant/" + restaurant.info.id} key={restaurant.info.id}>
+            <RestaurantCard {...restaurant.info} />
+            </Link>
             //always add key when you use map
         // ... is called Spread Operator
        // It opens (spreads) all key-value pairs of an object
@@ -142,3 +145,94 @@ const Body = () => {
 };
 
 export default Body;
+
+//OR
+
+// import { restaurantList } from "../constants"; 
+// import RestaurantCard from "./RestaurantCards";
+// import { useState } from "react";
+// import Shimmer from "./Shimmer";
+// import { Link } from "react-router-dom";
+
+// // 🔵 CHANGED: filter function updated for mock data structure
+// function filterData(searchText, restaurants) {
+//   return restaurants.filter((restaurant) =>
+//     restaurant.name.toLowerCase().includes(searchText.toLowerCase())
+//   );
+// }
+
+// const Body = () => {
+//   // 🔵 CHANGED: initialize state from mock restaurantList
+//   const [allRestaurants, setAllRestaurants] = useState(restaurantList);
+//   const [filteredRestaurants, setFilteredRestaurants] = useState(restaurantList);
+//   const [searchText, setSearchText] = useState("");
+
+//   // 🔴 REMOVED: Swiggy API fetching (blocked + conflicts with menu API)
+//   /*
+//   useEffect(() => {
+//     getRestaurants();
+//   }, []);
+
+//   async function getRestaurants() {
+//     const data = await fetch(
+//       "https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.9351929&lng=77.62448069999999&page_type=DESKTOP_WEB_LISTING"
+//     );
+//     const json = await data.json();
+//     setAllRestaurants(json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
+//     setFilteredRestaurants(json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
+//   }
+//   */
+
+//   // 🔵 CHANGED: No need to early return null since data is available from mock list
+//   // if (!allRestaurants) return null;  // ❌ removed
+
+//   if (filteredRestaurants.length === 0)
+//     return <h1>No Restaurant match your filter!!</h1>;
+
+//   return allRestaurants.length === 0 ? (
+//     <Shimmer />
+//   ) : (
+//     <>
+//       <div className="search-container">
+//         <input
+//           type="text"
+//           className="search-input"
+//           placeholder="Search"
+//           value={searchText}
+//           onChange={(e) => {
+//             setSearchText(e.target.value);
+//           }}
+//         />
+//         <button
+//           className="search-btn"
+//           onClick={() => {
+//             // 🔵 CHANGED: filter mock list instead of API data
+//             const data = filterData(searchText, allRestaurants);
+//             setFilteredRestaurants(data);
+//           }}
+//         >
+//           Search
+//         </button>
+//       </div>
+
+//       <div className="restaurant-list">
+//         {filteredRestaurants.map((restaurant) => {
+//           return (
+//             // 🔵 CHANGED: route uses mock id (TheMealDB valid IDs)
+//             <Link to={`/restaurant/${restaurant.id}`} key={restaurant.id}>
+//               {/* 🔵 CHANGED: passing mock data props instead of Swiggy restaurant.info */}
+//               <RestaurantCard {...restaurant} />
+//             </Link>
+//           );
+//         })}
+//       </div>
+//     </>
+//   );
+// };
+
+// export default Body;
+// used this code so that i can view meal/menu on clicking on the restaurant card and
+// we dont have menu id same as restaurant id in the swiggy api, 
+// so i used a free meal api called themealdb to get the menu data and
+// the meal id in the themealdb api is same as the restaurant id in the swiggy api,
+// so i can use the same id to fetch the menu data from the themealdb api and display it on the restaurant menu page.

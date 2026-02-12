@@ -1,7 +1,11 @@
 export const IMG_CDN_URL =
   "https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_508,h_320,c_fill/";
 
+
+
+
 export  const restaurantList = [
+
   {
     type: "restaurant",
     data: {
@@ -732,3 +736,14 @@ export  const restaurantList = [
     subtype: "basic",
   },
 ];
+// OR
+/*
+ export const restaurantList = [
+  { id: 52773, name: "Pizza Hu", image: "...", cuisines: ["Pizza"] },
+  { id: 52874, name: "Wow! Momo", image: "...", cuisines: ["Momos"] },
+  { id: 52893, name: "Barbeque Nation", image: "...", cuisines: ["Momos"] },
+];
+mock data because we didn't had same id in the swiggy api and menu api and we were 
+getting error because of that so we created a mock data with same id as the menu api
+and used that in the body component instead of fetching data from swiggy api.
+*/

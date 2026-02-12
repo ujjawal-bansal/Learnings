@@ -20,3 +20,11 @@
 
 # Babel ek JavaScript transpiler hai jo modern code ko old browser compatible JavaScript me convert karta hai.
 babel-plugin-transform-remove-console is used to remove console logs.
+
+
+##### NOTE: For interviews:
+Break your small logic into components.. more components is better it will help in make your code:
+1. modular
+2. readable
+3. maintainable
+4. testable
